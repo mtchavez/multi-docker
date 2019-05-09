@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh -i
 #
 # Login to docker
 #
