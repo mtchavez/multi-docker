@@ -6,11 +6,11 @@ before_install:
 script:
   - docker run -e CI=true mtchavez/react-test npm run test -- --coverage
 after_success:
-  - docker build -t mtchavez/multi-client -f client/Dockerfile ./client
-  - docker build -t mtchavez/multi-server -f client/Dockerfile ./server
-  - docker build -t mtchavez/multi-worker -f client/Dockerfile ./worker
-  - docker build -t mtchavez/multi-nginx -f client/Dockerfile ./nginx
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" -- password-stdin
+  - docker build -t mtchavez/multi-client ./client
+  - docker build -t mtchavez/multi-server ./server
+  - docker build -t mtchavez/multi-worker ./worker
+  - docker build -t mtchavez/multi-nginx ./nginx
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push mtchavez/multi-client
   - docker push mtchavez/multi-server
   - docker push mtchavez/multi-worker
