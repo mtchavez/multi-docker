@@ -6,7 +6,7 @@ services:
 before_install:
   - docker build -t mtchavez/react-test -f client/Dockerfile.dev ./client
 script:
-  - sh ./login-to-docker.sh
+  - sh -i ./login-to-docker.sh
   - docker run -e CI=true mtchavez/react-test npm run test -- --coverage
 after_success:
   - docker build -t mtchavez/multi-client ./client
