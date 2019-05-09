@@ -5,7 +5,7 @@ WORKDIR $APP_DIR
 COPY package.json .
 RUN npm i
 COPY . .
-CMD ["npm", "run", "build"]
+RUN npm run build
 
 FROM nginx
 EXPOSE 3000
