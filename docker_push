@@ -1,0 +1,18 @@
+#!/bin/sh -i
+#
+# Push images to docker hub
+#
+
+echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin
+
+echo "Building images"
+docker build -t mtchavez/multi-client ./client
+docker build -t mtchavez/multi-server ./server
+docker build -t mtchavez/multi-worker ./worker
+docker build -t mtchavez/multi-nginx ./nginx
+
+echo "Pushing images"
+docker push mtchavez/multi-client
+docker push mtchavez/multi-server
+docker push mtchavez/multi-worker
+docker push mtchavez/multi-nginx

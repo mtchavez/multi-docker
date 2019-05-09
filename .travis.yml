@@ -8,12 +8,8 @@ before_install:
 script:
   - sh -i ./login-to-docker.sh
   - docker run -e CI=true mtchavez/react-test npm run test -- --coverage
-after_success:
-  - docker build -t mtchavez/multi-client ./client
-  - docker build -t mtchavez/multi-server ./server
-  - docker build -t mtchavez/multi-worker ./worker
-  - docker build -t mtchavez/multi-nginx ./nginx
-  - docker push mtchavez/multi-client
-  - docker push mtchavez/multi-server
-  - docker push mtchavez/multi-worker
-  - docker push mtchavez/multi-nginx
+deploy:
+  provider: script
+  script: bash docker_push
+  on:
+    branch: master
