@@ -10,7 +10,7 @@ after_success:
   - docker build -t mtchavez/multi-server ./server
   - docker build -t mtchavez/multi-worker ./worker
   - docker build -t mtchavez/multi-nginx ./nginx
-  - docker login --username mtchavez --password "${DOCKER_PASSWORD}"
+  - echo "${DOCKER_PASSWORD}" | docker login --username mtchavez --password-stdin
   - docker push mtchavez/multi-client
   - docker push mtchavez/multi-server
   - docker push mtchavez/multi-worker
